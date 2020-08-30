@@ -35,19 +35,20 @@
                 @include('include.message')
 
                 <!-- form start -->
-              <form role="form" action="{{ route('category.store') }}" method="POST">
+              <form role="form" action="{{ route('category.update',$category->id) }}" method="POST">
                 {{ csrf_field() }}
+                {{ method_field('PATCH') }}
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="title">Category Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Category name">
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Category name" value="{{ $category->name }}">
                                 </div>
         
                                 <div class="form-group">
                                     <label for="slug">Category Slug</label>
-                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter slug">
+                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter slug" value="{{ $category->slug }}">
                                 </div>
                             </div>
                         </div>

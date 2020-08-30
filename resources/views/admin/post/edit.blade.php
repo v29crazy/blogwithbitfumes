@@ -35,24 +35,25 @@
                 @include('include.message')
 
                 <!-- form start -->
-              <form role="form" action="{{ route('post.store')}}" method="POST">
+              <form role="form" action="{{ route('post.update',$post->id)}}" method="POST">
                 {{ csrf_field() }}
+                {{ method_field('PATCH') }}
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="title">Post Title</label>
-                                    <input type="text" class="form-control" id="title" name="title" placeholder="Enter title">
+                                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" value="{{ $post->title }}">
                                 </div>
         
                                 <div class="form-group">
                                     <label for="subtitle">Post Sub Title</label>
-                                    <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Enter sub title">
+                                    <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Enter sub title" value="{{ $post->subtitle }}">
                                 </div>
         
                                 <div class="form-group">
                                     <label for="slug">Post Slug</label>
-                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter slug">
+                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter slug" value="{{ $post->slug }}">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -71,7 +72,7 @@
                                 <br>
                                 <br>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="status" id="status">
+                                    <input type="checkbox" class="form-check-input" name="status" id="status" @if($post->status==1)checked @endif>
                                     <label class="form-check-label" for="status">Publish post</label>
                                 </div>
                             </div>
@@ -98,7 +99,7 @@
                             <div class="card-body pad">
                             <div class="mb-3">
                                 <textarea class="textarea" name="body" placeholder="Place post content here"
-                                        style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                            style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $post->body}}</textarea>
                             </div>
                             </div>
                         </div>

@@ -31,23 +31,24 @@
                     <h3 class="card-title">Main Things</h3>
                 </div>
                 <!-- /.card-header -->
-                
+
                 @include('include.message')
 
                 <!-- form start -->
-              <form role="form" action="{{ route('category.store') }}" method="POST">
+              <form role="form" action="{{ route('tag.update',$tag->id) }}" method="POST">
                 {{ csrf_field() }}
+                {{ method_field('PATCH') }}
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="title">Category Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Category name">
+                                    <label for="title">Tag Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter tag name" value="{{ $tag->name }}">
                                 </div>
         
                                 <div class="form-group">
-                                    <label for="slug">Category Slug</label>
-                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter slug">
+                                    <label for="slug">Tag Slug</label>
+                                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter slug" value="{{ $tag->slug }}">
                                 </div>
                             </div>
                         </div>
@@ -59,7 +60,7 @@
 
                     <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="{{route('category.index')}}" class="btn btn-warning">Back</a>
+                    <a href="{{route('tag.index')}}" class="btn btn-warning">Back</a>
                     </div>
                 </form>
             </div>

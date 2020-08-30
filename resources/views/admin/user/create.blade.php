@@ -31,12 +31,8 @@
                     <h3 class="card-title">Main Things</h3>
                 </div>
                 <!-- /.card-header -->
-                
-                @include('include.message')
-
                 <!-- form start -->
-              <form role="form" action="{{ route('post.store')}}" method="POST">
-                {{ csrf_field() }}
+                <form role="form">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -77,10 +73,8 @@
                             </div>
                         </div>
 
-                      </div>
-                      <!-- /.card-body -->
                         
-                        <div class="card">
+                        <div class="card card-outline card-info">
                             <div class="card-header">
                             <h3 class="card-title">
                                 Write Post
@@ -97,21 +91,21 @@
                             <!-- /.card-header -->
                             <div class="card-body pad">
                             <div class="mb-3">
-                                <textarea class="textarea" name="body" placeholder="Place post content here"
+                                <textarea class="textarea" name="postbody" placeholder="Place post content here"
                                         style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                             </div>
                             </div>
                         </div>
                         
+                    </div>
+                    <!-- /.card-body -->
 
                     <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
-                    <a href="{{route('post.index')}}" class="btn btn-warning">Back</a>
                     </div>
-              </form>
+                </form>
             </div>
             <!-- /.card -->   
-            
 
         </div>
         <!-- /.col-->
@@ -122,26 +116,4 @@
   </div>
   <!-- /.content-wrapper -->
 
-  
-
-@endsection
-
-@section('footerSection')
-  <!-- summmer note-->
-  <!-- jQuery -->
-  <script src="{{asset('../../admin/plugins/jquery/jquery.min.js')}}"></script>
-  <!-- Bootstrap 4 -->
-  <script src="{{asset('../../admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <!-- AdminLTE App -->
-  <script src="{{asset('../../admin/dist/js/adminlte.min.js')}}"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="{{asset('../../admin/dist/js/demo.js')}}"></script>
-  <!-- Summernote -->
-  <script src="{{asset('../../admin/plugins/summernote/summernote-bs4.min.js')}}"></script>
-  <script>
-    $(function () {
-      // Summernote
-      $('.textarea').summernote()
-    })
-  </script>
 @endsection

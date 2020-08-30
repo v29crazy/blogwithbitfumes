@@ -13,26 +13,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('user/blog');
+//User Routes
+Route::group(['namespace' => 'User'], function () {
+        
+    Route::get('/', 'HomeController@index');
+
+    Route::get('post', 'PostController@index');
+
 });
 
-Route::get('post', function () {
-    return view('user/post');
-})->name('post');
 
-Route::get('/admin/home', function () {
-    return view('admin/home');
-})->name('post');
+Route::group(['namespace' => 'Admin'], function () {
 
-Route::get('/admin/post', function () {
-    return view('admin/post/post');
+    Route::get('admin/home','HomeController@index')->name('admin.home');
+        
+    //post routes
+    Route::resource('admin/user', 'UserController');
+
+    //post routes
+    Route::resource('admin/post', 'PostController');
+
+    //tag routes
+    Route::resource('admin/tag', 'TagController');
+
+    //category routes
+    Route::resource('admin/category', 'CategoryController');
+
 });
 
-Route::get('/admin/tag', function () {
-    return view('admin/tag/tag');
-});
-
-Route::get('/admin/category', function () {
-    return view('admin/category/category');
-});

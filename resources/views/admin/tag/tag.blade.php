@@ -31,8 +31,12 @@
                     <h3 class="card-title">Main Things</h3>
                 </div>
                 <!-- /.card-header -->
+
+                @include('include.message')
+
                 <!-- form start -->
-                <form role="form">
+              <form role="form" action="{{ route('tag.store') }}" method="POST">
+                {{ csrf_field() }}
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
@@ -55,6 +59,7 @@
 
                     <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="{{route('tag.index')}}" class="btn btn-warning">Back</a>
                     </div>
                 </form>
             </div>
