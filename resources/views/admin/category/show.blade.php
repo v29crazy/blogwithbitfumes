@@ -36,7 +36,7 @@
             <h3 class="card-title">Title</h3>
             
             <div class="center text-center">
-                <a href="{{ route('tag.create')}}" class="center text-center btn btn-success">Add New</a>
+                <a href="{{ route('category.create')}}" class="center text-center btn btn-success">Add New</a>
             </div>
 
             <div class="card-tools">

@@ -1,5 +1,13 @@
 @extends('admin/layout/app')
 
+@section('headSection')
+    <!-- Select2 -->
+  <link rel="stylesheet" href="{{ asset('admin/plugins/select2/css/select2.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('admin/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+  <script src="https://cdn.ckeditor.com/4.14.1/full/ckeditor.js"></script>
+  
+@endsection
+
 @section('main-content')
     
   <!-- Content Wrapper. Contains page content -->
@@ -69,14 +77,44 @@
                                     </div>
                                     </div>
                                 </div>
-                                <br>
-                                <br>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" name="status" id="status" @if($post->status==1)checked @endif>
-                                    <label class="form-check-label" for="status">Publish post</label>
+
+                                <div class="form-group" >
+                                  <label>Category</label>
+                                  <select class="select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;" tabindex="-1" aria-hidden="true" name="categories[]">
+                                    @foreach ($categories as $category)
+
+                                      <option value="{{$category->id}}" 
+                                      @foreach ($post->categories as $postCat)
+                                        @if( $postCat->id == $category->id)
+                                          selected
+                                        @endif
+                                      @endforeach>{{ $category->name}}</option>
+                                    @endforeach
+                                  </select>
                                 </div>
+    
+                                <div class="form-group" >
+                                  <label>Tags</label>
+                                  <select class="select2 select2-hidden-accessible" multiple="" data-placeholder="Select a State" style="width: 100%;"  tabindex="-1" aria-hidden="true" name="tags[]">
+                                    @foreach ($tags as $tag)
+                                      <option value="{{$tag->id}}" 
+                                        @foreach ($post->tags as $postTag)
+                                          @if( $postTag->id == $tag->id)
+                                            selected
+                                          @endif
+                                        @endforeach>{{ $tag->name}}</option>
+                                    @endforeach
+                                  </select>
+                                </div>
+
+                              </div>
+                              
+                              <div class="form-check m-auto" >
+                                <input type="checkbox" class="form-check-input" name="status" id="status" value="1" @if($post->status==1)checked @endif>
+                                <label class="form-check-label" for="status">Publish post</label>
                             </div>
                         </div>
+
 
                       </div>
                       <!-- /.card-body -->
@@ -98,7 +136,7 @@
                             <!-- /.card-header -->
                             <div class="card-body pad">
                             <div class="mb-3">
-                                <textarea class="textarea" name="body" placeholder="Place post content here"
+                                <textarea  id="editor1"  name="body" placeholder="Place post content here"
                             style="width: 100%; height: 500px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $post->body}}</textarea>
                             </div>
                             </div>
@@ -128,21 +166,27 @@
 @endsection
 
 @section('footerSection')
-  <!-- summmer note-->
-  <!-- jQuery -->
-  <script src="{{asset('../../admin/plugins/jquery/jquery.min.js')}}"></script>
-  <!-- Bootstrap 4 -->
-  <script src="{{asset('../../admin/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-  <!-- AdminLTE App -->
-  <script src="{{asset('../../admin/dist/js/adminlte.min.js')}}"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="{{asset('../../admin/dist/js/demo.js')}}"></script>
-  <!-- Summernote -->
-  <script src="{{asset('../../admin/plugins/summernote/summernote-bs4.min.js')}}"></script>
-  <script>
-    $(function () {
-      // Summernote
-      $('.textarea').summernote()
+  
+
+  <!-- Select2 -->
+<script src="{{asset('admin/plugins/select2/js/select2.full.min.js')}}"></script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
     })
+  })
   </script>
+
+  
+<script>
+  // Replace the <textarea id="editor1"> with a CKEditor 4
+  // instance, using default configuration.
+  CKEDITOR.replace( 'editor1' );
+</script>
+
 @endsection

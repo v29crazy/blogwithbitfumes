@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 //User Routes
 Route::group(['namespace' => 'User'], function () {
         
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'HomeController@index')->name('user.home');
 
-    Route::get('post', 'PostController@index');
+    Route::get('post/{post}', 'PostController@post')->name('user.post');
 
 });
 
